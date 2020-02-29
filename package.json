@@ -1,5 +1,5 @@
 {
-  "name": "gq",
+  "name": "tikked-persistency",
   "version": "0.0.1",
   "description": "A feature flag thingy",
   "main": "dist/src/index.js",
