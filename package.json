@@ -1,0 +1,84 @@
+{
+  "name": "gq",
+  "version": "0.0.1",
+  "description": "A feature flag thingy",
+  "main": "dist/src/index.js",
+  "dependencies": {
+    "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
+    "io-ts": "^1.10.4",
+    "io-ts-reporters": "0.0.21",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2",
+    "tikked-core": "github:tikked/core"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.7.1",
+    "@types/sinon": "^7.0.13",
+    "@types/sinon-chai": "^3.2.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cloc": "^2.5.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-prefer-arrow-functions": "^3.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
+    "prettier-ts": "^1.17.1-2",
+    "rimraf": "^2.6.3",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
+    "ts-node": "^8.3.0",
+    "ts-sinon": "^1.0.17",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": "src",
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "temp-dir": "./.nyc_output/",
+    "all": true
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist .nyc_output coverage",
+    "count": "cloc --by-file-by-lang src",
+    "coverage": "nyc npm test",
+    "lint-fix": "eslint --fix ./src/**",
+    "lint": "eslint ./src/**",
+    "test": "mocha",
+    "prepare": "npm run build",
+    "pretty": "prettier-eslint fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abondoa/gq.git"
+  },
+  "keywords": [
+    "feature-flags",
+    "feature-toggle"
+  ],
+  "author": "Alex Bondo Andersen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abondoa/gq/issues"
+  },
+  "homepage": "https://github.com/abondoa/gq#readme",
+  "files": [
+    "dist/*"
+  ],
+  "types": "dist/src/index.d.ts"
+}
