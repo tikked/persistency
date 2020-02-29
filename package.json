@@ -65,7 +65,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abondoa/gq.git"
+    "url": "git+https://github.com/tikked/persistency.git"
   },
   "keywords": [
     "feature-flags",
@@ -74,9 +74,9 @@
   "author": "Alex Bondo Andersen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/abondoa/gq/issues"
+    "url": "https://github.com/tikked/persistency/issues"
   },
-  "homepage": "https://github.com/abondoa/gq#readme",
+  "homepage": "https://github.com/tikked/persistency#readme",
   "files": [
     "dist/*"
   ],
