@@ -160,7 +160,7 @@ module.exports = {
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
-        "no-underscore-dangle": "error",
+        "no-underscore-dangle": ["error", {"allowAfterThis": true}],
         "no-unsafe-finally": "error",
         "no-unused-expressions": "off",
         "no-unused-labels": "error",
@@ -201,7 +201,6 @@ module.exports = {
                     "import-spacing": true,
                     "jsdoc-format": true,
                     "no-reference-import": true,
-                    "no-unused-expression-chai": true,
                     "one-line": [
                         true,
                         "check-open-brace",

@@ -8,8 +8,8 @@ import {
   share,
   tap
 } from 'rxjs/operators';
-import { DataStream } from '.';
 import { validateIsNotEmpty } from 'tikked-core';
+import { DataStream } from '.';
 
 export class FileStream implements DataStream {
   private contentProm: Promise<string> | undefined;
@@ -24,7 +24,7 @@ export class FileStream implements DataStream {
    * @param _write Promise based function for writing content to the file
    * - must be compatible with fs.promises.writeFile
    */
-  constructor(
+  public constructor(
     private filePath: string,
     private _load = (fp: string) => fsPromises.readFile(fp, 'utf8'),
     private _watch = (fp: string, watcher: (event: string) => void) =>
@@ -37,6 +37,17 @@ export class FileStream implements DataStream {
 
   public write(content: string): Promise<void> {
     return this._write(this.filePath, content);
+  }
+
+  public read(): Observable<string> {
+    return of(1).pipe(
+      concat(
+        this.observeChange().pipe(tap(_ => (this.contentProm = undefined)))
+      ),
+      mergeMap(() => this.observeContent()),
+      filter(val => val !== ''),
+      distinctUntilChanged()
+    );
   }
 
   private observeChange(): Observable<void> {
@@ -57,16 +68,5 @@ export class FileStream implements DataStream {
       });
     }
     return from(this.contentProm);
-  }
-
-  public read(): Observable<string> {
-    return of(1).pipe(
-      concat(
-        this.observeChange().pipe(tap(_ => (this.contentProm = undefined)))
-      ),
-      mergeMap(() => this.observeContent()),
-      filter(val => val !== ''),
-      distinctUntilChanged()
-    );
   }
 }

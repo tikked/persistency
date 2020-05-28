@@ -1,7 +1,6 @@
 import { injectable } from 'inversify';
 import * as t from 'io-ts';
 import { reporter } from 'io-ts-reporters';
-import { Decoder, Encoder } from '.';
 import {
   ApplicationEnvironment,
   Attribute,
@@ -9,7 +8,8 @@ import {
   ContextSchema,
   FeatureFlag,
   Toggle
-} from 'tikked-core'
+} from 'tikked-core';
+import { Decoder, Encoder } from '.';
 
 @injectable()
 export class JsonCoder implements Encoder<string>, Decoder<string> {

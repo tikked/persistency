@@ -1,9 +1,9 @@
 import { inject, injectable } from 'inversify';
 import { Observable, throwError } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
-import { Coder, StreamFactory } from '.';
 import { ApplicationEnvironment } from 'tikked-core';
 import { TYPES } from '../types';
+import { Coder, StreamFactory } from '.';
 
 export type errorHandler = (err: Error) => void;
 
@@ -11,7 +11,7 @@ export type errorHandler = (err: Error) => void;
 export class ApplicationEnvironmentRepository {
   private appEnvObs: Map<string, Observable<ApplicationEnvironment>>;
 
-  constructor(
+  public constructor(
     @inject(TYPES.StreamFactory) private streamFactory: StreamFactory,
     @inject(TYPES.Coder) private coder: Coder,
     @inject(TYPES.ErrorHandler)
