@@ -8,9 +8,9 @@ import { StreamFactory } from '.';
 export class FileStreamFactory implements StreamFactory<FileStream> {
   public constructor(@inject(TYPES.ApplicationEnvironmentRoot) private root = '') {}
 
-  public create(applicationEnvironmentName: string): FileStream {
+  public create(applicationEnvironmentId: string): FileStream {
     return new FileStream(
-      path.join(this.root, `${applicationEnvironmentName}.json`)
+      path.join(this.root, `${applicationEnvironmentId}.json`)
     );
   }
 }

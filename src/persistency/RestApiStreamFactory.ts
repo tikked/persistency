@@ -8,7 +8,7 @@ import { StreamFactory } from '.';
 export class RestApiStreamFactory implements StreamFactory<RestApiStream> {
   public constructor(@inject(TYPES.ApplicationEnvironmentRootUrl) private rootUrl = '') {}
 
-  public create(applicationEnvironmentName: string): RestApiStream {
-    return new RestApiStream(`${this.rootUrl}/application-environment/${applicationEnvironmentName}`);
+  public create(applicationEnvironmentId: string): RestApiStream {
+    return new RestApiStream(`${this.rootUrl}/application-environment/${applicationEnvironmentId}`);
   }
 }
