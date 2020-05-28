@@ -49,7 +49,9 @@ export class ApplicationEnvironmentRepository {
     doThrow: boolean
   ): ApplicationEnvironment | undefined {
     try {
-      return this.coder.decode(input);
+      const res = this.coder.decode(input);
+      res.toString = () => this.coder.encode(res);
+      return res;
     } catch (e) {
       if (doThrow) throw e;
       this._errorHandler(e);

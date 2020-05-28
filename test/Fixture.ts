@@ -1,5 +1,12 @@
 import { clearInterval } from 'timers';
-import { ApplicationEnvironment, Attribute, Context, ContextSchema, FeatureFlag, Toggle } from 'tikked-core';
+import {
+  ApplicationEnvironment,
+  Attribute,
+  Context,
+  ContextSchema,
+  FeatureFlag,
+  Toggle
+} from 'tikked-core';
 
 export function timeout(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -21,17 +28,13 @@ export function becomesTrue(
     }),
     timeout(timeoutMs).then(() => {
       clearInterval(interval);
-      throw new Error(
-        `Timout while waiting for condition to be true ${condition}`
-      );
+      throw new Error(`Timout while waiting for condition to be true ${condition}`);
     })
   ]);
 }
 
 export function createFeatureFlag(id?: string) {
-  return new FeatureFlag(id || createId(), createName(), createDescription(), [
-    createToggle()
-  ]);
+  return new FeatureFlag(id || createId(), createName(), createDescription(), [createToggle()]);
 }
 
 export function createToggle() {

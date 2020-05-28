@@ -391,7 +391,7 @@ describe('JsonCoder', () => {
         const res = runEncode();
 
         // Assert
-        expect(res).to.contain(`"contextSchema":{"attributes":[]}`);
+        expect(res).to.contain('"contextSchema":{"attributes":[]}');
       });
 
       it('should encode featureFlags', () => {
@@ -399,7 +399,7 @@ describe('JsonCoder', () => {
         const res = runEncode();
 
         // Assert
-        expect(res).to.contain(`"featureFlags":[]`);
+        expect(res).to.contain('"featureFlags":[]');
       });
     });
   });

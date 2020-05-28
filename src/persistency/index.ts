@@ -39,3 +39,4 @@ export interface StreamFactory<TStream extends DataStream = DataStream> {
 export * from './ApplicationEnvironmentRepository';
 export * from './JsonCoder';
 export * from './FileStreamFactory';
+export * from './RestApiStreamFactory';

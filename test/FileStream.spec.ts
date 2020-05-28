@@ -1,8 +1,8 @@
 import { fail } from 'assert';
-import { expect, use as chaiUse } from 'chai';
-import * as chaiAsPromised from 'chai-as-promised';
 import { existsSync, promises as fsPromises } from 'fs';
 import { join } from 'path';
+import { expect, use as chaiUse } from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
 import { Observable, Subscription } from 'rxjs';
 import { fake, SinonSpy, SinonStub, spy, stub } from 'sinon';
 import * as sinonChai from 'sinon-chai';

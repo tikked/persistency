@@ -111,7 +111,7 @@ module.exports = {
         "import/no-extraneous-dependencies": [
             "error",
             {
-                "devDependencies": false
+                "devDependencies": ["test/**"]
             }
         ],
         "import/no-internal-modules": "off",
