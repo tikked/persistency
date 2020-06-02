@@ -7,29 +7,20 @@ import { Observable, Subscription } from 'rxjs';
 import { fake, SinonSpy, SinonStub, spy, stub } from 'sinon';
 import * as sinonChai from 'sinon-chai';
 import { FileStream } from '../src/persistency/FileStream';
-import {
-  becomesTrue,
-  createApplicationEnvironment,
-  createString
-} from './Fixture';
+import { becomesTrue, createApplicationEnvironment, createString } from './Fixture';
 chaiUse(sinonChai);
 chaiUse(chaiAsPromised);
 
 describe('FileStream', () => {
   describe('constructor', () => {
-    context('given valid coder', () => {
-      // Arrange
-      const appEnv = createApplicationEnvironment();
-
-      context('when called with empty file path', () => {
-        it('should throw an error', () => {
-          // Act
-          expect(() => {
-            const res = new FileStream('');
-          })
-            // Assert
-            .to.throw('empty');
-        });
+    context('when called with empty file path', () => {
+      it('should throw an error', () => {
+        // Act
+        expect(() => {
+          const res = new FileStream('');
+        })
+          // Assert
+          .to.throw('empty');
       });
     });
   });
@@ -246,32 +237,29 @@ describe('FileStream', () => {
           expect(error).to.be.calledOnce;
         });
       });
-      context(
-        'when stream is subsequently read after initial error and file change',
-        () => {
-          let sub: Subscription;
-          let next: SinonSpy;
-          let error: SinonSpy;
-          beforeEach(async () => {
-            next = spy();
-            error = spy();
-            const subTemp = stream.read().subscribe({ next, error });
-            await becomesTrue(() => error.callCount >= 1);
-            await fsPromises.writeFile(filePath, fileContent);
-            subTemp.unsubscribe();
-            sub = stream.read().subscribe({ next, error });
-          });
-          afterEach(async () => {
-            sub.unsubscribe();
-          });
-          it('should get the file content of the newly saved file', async () => {
-            await becomesTrue(() => next.callCount >= 1);
-            expect(next).to.be.calledOnce;
-            expect(next).to.be.calledWith(fileContent);
-            expect(error).to.be.calledOnce;
-          });
-        }
-      );
+      context('when stream is subsequently read after initial error and file change', () => {
+        let sub: Subscription;
+        let next: SinonSpy;
+        let error: SinonSpy;
+        beforeEach(async () => {
+          next = spy();
+          error = spy();
+          const subTemp = stream.read().subscribe({ next, error });
+          await becomesTrue(() => error.callCount >= 1);
+          await fsPromises.writeFile(filePath, fileContent);
+          subTemp.unsubscribe();
+          sub = stream.read().subscribe({ next, error });
+        });
+        afterEach(async () => {
+          sub.unsubscribe();
+        });
+        it('should get the file content of the newly saved file', async () => {
+          await becomesTrue(() => next.callCount >= 1);
+          expect(next).to.be.calledOnce;
+          expect(next).to.be.calledWith(fileContent);
+          expect(error).to.be.calledOnce;
+        });
+      });
     });
   });
 

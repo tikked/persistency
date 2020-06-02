@@ -81,8 +81,6 @@ export class JsonCoder implements Encoder<string>, Decoder<string> {
   }
 
   public encode(appEnv: ApplicationEnvironment): string {
-    return JSON.stringify(appEnv, (key, value) =>
-      key === 'context' ? value.contextData : value
-    );
+    return JSON.stringify(appEnv);
   }
 }

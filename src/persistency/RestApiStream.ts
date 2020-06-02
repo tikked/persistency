@@ -12,7 +12,7 @@ export class RestApiStream implements DataStream {
    * @param url The path to the REST endpoint that hosts the Application Environment
    */
   public constructor(private url: string) {
-    validateIsNotEmpty(url);
+    validateIsUrl(url);
   }
 
   public write(content: string): Promise<void> {
@@ -42,5 +42,14 @@ export class RestApiStream implements DataStream {
 
   private async applicationEnvironmentWait(): Promise<string> {
     return JSON.stringify((await axios.get<string>(this.url, { params: { wait: 'true' } })).data);
+  }
+}
+
+const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i
+function validateIsUrl(url: string): void
+{
+  validateIsNotEmpty(url);
+  if(!urlRegex.test(url)){
+    throw new Error(`String is not a valid URL: "${url}"`)
   }
 }
