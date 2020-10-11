@@ -270,14 +270,12 @@ describe('JsonCoder', () => {
       const id = createId();
       const name = createName();
       const description = createDescription();
-      const weight = 1;
       const contextSchema = {
         attributes: [
           {
             id,
             name,
-            description,
-            weight
+            description
           }
         ]
       };
@@ -326,14 +324,6 @@ describe('JsonCoder', () => {
         expect(res.ContextSchema.Attributes[0].Description).to.be.equal(
           description
         );
-      });
-
-      it('should store weight of attribute in context schema', () => {
-        // Act
-        const res = runDecoder();
-
-        // Assert
-        expect(res.ContextSchema.Attributes[0].Weight).to.be.equal(weight);
       });
     });
   });

@@ -65,18 +65,11 @@ export function createDescription() {
   return 'some_desc' + descriptionCounter++;
 }
 
-let weightCounter = 1;
-export function createWeight() {
-  weightCounter = weightCounter % 29;
-  return weightCounter++;
-}
-
-export function createAttribute(id?: string, weight = 0) {
+export function createAttribute(id?: string) {
   return new Attribute(
     id || createId(),
     createName(),
-    createDescription(),
-    weight || createWeight()
+    createDescription()
   );
 }
 

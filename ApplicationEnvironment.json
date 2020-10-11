@@ -11,9 +11,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "weight": {
-          "type": "number"
         }
       },
       "type": "object"
