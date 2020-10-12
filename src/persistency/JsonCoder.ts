@@ -32,8 +32,7 @@ export class JsonCoder implements Encoder<string>, Decoder<string> {
   });
 
   private static attributeDecoder = t.type({
-    ...JsonCoder.idNameDesc,
-    weight: t.Int
+    ...JsonCoder.idNameDesc
   });
 
   private static contextSchemaDecoder = t.type({
@@ -63,7 +62,7 @@ export class JsonCoder implements Encoder<string>, Decoder<string> {
       new ContextSchema(
         res.contextSchema.attributes.map(
           attr =>
-            new Attribute(attr.id, attr.name, attr.description, attr.weight)
+            new Attribute(attr.id, attr.name, attr.description)
         )
       ),
       res.featureFlags.map(
